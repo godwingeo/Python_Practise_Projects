@@ -18,3 +18,27 @@ print(type(birth_year))
 age = 2022 - int(birth_year) ## Here the age is converted to integer type
 print(age)
 print(type(age))
+## Strings
+course = 'Python for beginners' ### Python
+         #012345 ---index for word Python
+print(course[0]) ## Note - Indexing starts from ZERO
+print(course[1])
+print(course[-1]) ## Last letter from the end.
+print(course[-2]) ## Second Last letter from the end
+## Printing certain range of characters
+print(course[0:3]) ## Starts from zero but ends at n-1 i.e 3-1 = 2, Index 3 is excluded
+
+## Having only the start index in the square brackets
+print(course[0:]) ## copy of string ## here end index is assumed as length of the string
+print(course[1:]) ## ignores letter P alone and prints remaining --- ython for beginners
+print(course[:5]) ## so here start index is assumed as 0 by python i.e 0 to n-1 (4) is returned
+## Here 0 will be assumed as start index and length of string as the end index
+## This will create a copy of the entire string
+print(course[:])
+another = course[:]
+print('The copy is ')
+print(another)
+## Find the output
+name = 'Jennifer'
+## starts with index 1 = e , and ends at e , since -1 = r , a letter before r i.e- e
+print(name[1:-1]) ## o/p - ennife
