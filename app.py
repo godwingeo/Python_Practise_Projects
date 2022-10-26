@@ -42,3 +42,14 @@ print(another)
 name = 'Jennifer'
 ## starts with index 1 = e , and ends at e , since -1 = r , a letter before r i.e- e
 print(name[1:-1]) ## o/p - ennife
+
+## Fromatted string
+## It helps to visualize the output in a better way
+first = 'John'
+last = 'Smith'
+## we need a message as john [smith] is a coder
+message = first + ' [' + last + '] is a coder'
+print(message)
+## formatted string conversion here f means formated string {} has variable in it
+msg = f'{first} [{last}] is a coder'
+print(msg)
