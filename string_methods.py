@@ -1,3 +1,5 @@
+import math
+
 course = 'Python for Beginners'
 ## Use of len function to get the string length even space is counted
 print(len(course))
@@ -23,4 +25,30 @@ print(course.replace('P', 'J')) ## o/p print(course.replace('P', 'J'))
 ## Use of IN key word - we can check existence of a string or character
 print('Python' in course) ## o/p - True
 print('python' in course) ## o/p -False
-## in keyword retuns a boolean value where as find  will return index 
+## note: in keyword retuns a boolean value where as find  will return index
+
+## 10/3 - gives integer or float
+print(10/3) ## output is a float
+print(10//3) ## output is a integer
+## Modulo operator
+print(10 % 3) # remainder after dividing
+## Exponent operator
+print(10 ** 3) ## Returns 10 to the cap of 3 i.e 10 ^3
+
+## augmented operator
+X= 10
+X += 3 ## x = x + 3
+print(X)
+
+X -= 4 ## x = x -4
+print(X)
+
+X *= 3 ## x = x * 3
+print(X)
+## Example of using Math module
+print(math.ceil(2.9))
+## Floor method in Math modules
+print(math.floor(2.9))
+## round and absolute functions
+print(round(2.9)) ## rounding to 3
+print(abs(-2.9))  ## Negative sign is removed and only positive values are considered
