@@ -21,3 +21,20 @@ if has_good_credit:
 else:
     downpayment = price * 0.2
 print(f"Downpayment:${downpayment}")
+
+## Logical operators
+## if applicant has high income And good credit then eligible for loan
+has_high_income = False
+has_good_credit = True
+if has_high_income and has_good_credit:  ## We can also change And operator to or operator
+    print("Eligible for loan")
+## NOT operator
+## If applicatant has good credit and Not having any criminal record then eligible for loan
+## NOTE- and, or , not all in small letters
+has_good_credit = True
+has_criminal_record = False
+if has_good_credit and not has_criminal_record:
+    print("Eligible for loan")
+
+# comparison operators: <, >, <=, >= , Equality operator == , !=,
+## Note - eg - a = 5 -- Here equal to sign is a assignment operator, where as == is equality operator
