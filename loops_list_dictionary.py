@@ -107,4 +107,44 @@ for number in numbers:
     if number not in uniques: ##
         uniques.append(number)
 print(uniques)
-## Tuples 
+## Tuples
+## Tuples are almost like list but one difference is we cannot modify values defined inside
+## of a tuple
+test_num = (1, 2, 3)
+print(test_num)
+print(test_num[0])
+
+## unpacking
+coordinates = (1, 2, 3)
+x, y, z = coordinates
+print(x)
+print(y)
+print(z)
+
+## entering Phone numbers in digits and it should return the wordings of number
+
+phone = input('Phone: ')
+digits_mapping = {
+    "1": "one",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four"
+}
+output = ""
+for ch in phone:
+    output += digits_mapping.get(ch, "!") + " "
+print(output)
+
+### emoji converter code:
+
+message = input(">")
+words = message.split(' ')
+emojis = {
+    ":)": "😀",
+    ":(": "😔"
+}
+output = ""
+for word in words:
+    ## here .get method has a word which you entered gets defaulted to same word entered by the user
+    output += emojis.get(word, word) + " "
+print(output)
