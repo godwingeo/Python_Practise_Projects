@@ -1,62 +1,57 @@
+
 from requests import get
 from pprint import PrettyPrinter
-##BASE_URL = "https://free.currconv.com/"
-## API_KEY = "562ddaf40c95f5d58108"
+
+
+BASE_URL = "https://free.currconv.com/"
+API_KEY = "9a7058e7b2c6c6dfde7a"
 
 printer = PrettyPrinter() ## Helps to format the JSON file
 
-
-json = {'results': {'AED': {'currencyName': 'UAE Dirham', 'id': 'AED'},
-             'AFN': {'currencyName': 'Afghan Afghani', 'id': 'AFN', 'currencySymbol': '^'},
-             'USA': {'currencyName': 'US dollar', 'id': 'USD', 'currencySymbol': '$'},
-             'INR': {'currencyName': 'Indian Rupee', 'id': 'INR', 'currencySymbol': 'RS'},
-             'CAD': {'currencyName': 'Canadian Dollars', 'id': 'CAD', 'currencySymbol': '$'}
-             }
- }
-json_exchange_rate = {
-    'AED_INR': 22.50,
-    'USD_INR': 82.66,
-    'CAD_INR': 60.99,
-    'AFN_INR': 0.93
-
-}
-
+## Function to get the list of currencies available from the API realtime
 def get_currencies():
-    ##endpoint = f"api/v7/currencies?apiKey={API_KEY}"
-    ##url = BASE_URL + endpoint
-    ##printer.pprint(data)
-    data = json['results'] ## This will get the exact dictionary of results
-    data = list(data.items()) ## coverting the Dictionary to a List so that we can sort the currency
+    endpoint = f"api/v7/currencies?apiKey={API_KEY}"
+    url = BASE_URL + endpoint
+    data = get(url).json()['results']
+    data = list(data.items())
     data.sort()
-    print(type(data))
     return data
+data = get_currencies()
 
+## Function to print the currencies in a proper format
 def print_currencies(currencies):
     for name, currency in currencies: ## This isteration is tuple iteration
         name = currency['currencyName']
         _id = currency['id']
         symbol = currency.get('currencySymbol', "")
         print(f"{_id} - {name} - {symbol}")
-my_data = get_currencies()
-##printer.pprint(my_data)
-print_currencies(my_data)
 
+## Function to get the exchange rate between the currencies
 def exchange_rate(currency1, currency2):
-    ky = str(currency1 +"_"+ currency2 )
-    data = json_exchange_rate[ky]  ## Normally from API this have a LIST conversion
-    rate = data
+    endpoint = f'api/v7/convert?q={currency1}_{currency2}&compact=ultra&apiKey={API_KEY}'
+    url = BASE_URL + endpoint
+    data = get(url).json()
+    if len(data) == 0:
+        print('Invalid currencies')
+        return
+    rate = list(data.values())[0]
     print(f"{currency1} -> {currency2} = {rate}")
     return rate
-
-exchange_rate('USD', 'INR')
-
+## Find the Total Amount in coverted Format using Formula: converted_amount = rate * amount
 def convert(currency1, currency2, amount):
     rate = exchange_rate(currency1, currency2)
+    if rate is None:
+        return
+    try:
+        amount = float(amount)
+    except:
+        print("Invalid Amount.")
+        return
     converted_amount = rate * amount
     print(f'{amount} {currency1} is equal to {converted_amount} {currency2}')
     return converted_amount
 
-
+## Main function to get the inputs from the user and generate the results using above functions
 def main():
     currencies = get_currencies()
     print("Welcome to currency converter!")
